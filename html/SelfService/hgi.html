@@ -2,6 +2,8 @@
 %#
 %# COPYRIGHT:
 %#
+%# Copyright (c) 2015 Genome Research Ltd
+%#
 %# This software is Copyright (c) 1996-2013 Best Practical Solutions, LLC
 %#                                          <sales@bestpractical.com>
 %#
@@ -45,11 +47,31 @@
 %# those contributions and any derivatives thereof.
 %#
 %# END BPS TAGGED BLOCK }}}
-<& /SelfService/Elements/Header, Title => loc('HGI Pipeline tickets') &>
+<& /SelfService/Elements/Header, Title => loc('HGI Requests') &>
 <& /SelfService/Elements/HgiPipelineRequests,
     %ARGS,
     status          => [ RT::Queue->ActiveStatusArray() ],
-    friendly_status => loc('open'),
+    BaseURL => RT->Config->Get('WebPath') ."/SelfService/hgi.html?",
+    Page    => $Page, 
+&>
+
+<& /SelfService/Elements/HgiArchiveRequests,
+    %ARGS,
+    status          => [ RT::Queue->ActiveStatusArray() ],
+    BaseURL => RT->Config->Get('WebPath') ."/SelfService/hgi.html?",
+    Page    => $Page, 
+&>
+
+<& /SelfService/Elements/HgiSoftwareRequests,
+    %ARGS,
+    status          => [ RT::Queue->ActiveStatusArray() ],
+    BaseURL => RT->Config->Get('WebPath') ."/SelfService/hgi.html?",
+    Page    => $Page, 
+&>
+
+<& /SelfService/Elements/HgiDevRequests,
+    %ARGS,
+    status          => [ RT::Queue->ActiveStatusArray() ],
     BaseURL => RT->Config->Get('WebPath') ."/SelfService/hgi.html?",
     Page    => $Page, 
 &>

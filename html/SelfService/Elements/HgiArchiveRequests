@@ -56,30 +56,26 @@
 			 BaseURL => $BaseURL,
 			 AllowSorting => 1,
 			 Class   => 'RT::Tickets',
-             Rows    => $Rows,
+			 Rows    => $Rows,
 			 Page    => $Page &>
 </&>
 
 <%INIT>
-my $title = loc("Data Processing Requests");
+my $title = loc("Archival Requests");
 my $id = $session{'CurrentUser'}->id;
-my $Query = "( Queue = 'hgi-pipeline' ) AND ( Status != 'resolved' )";
+my $Query = "( Queue = 'hgi-archive' ) AND ( Status != 'resolved' )";
 my $Format = qq{
    '__Priority__',
    '__CustomField.{humgen-project-name}__/TITLE:Project',
-   '__CustomField.{hgi-library-type}__/TITLE:Library',
-   '__CustomField.{hgi-pipeline-type}__/TITLE:Pipeline',
-   '__CustomField.{hgi-subset-samples}__/TITLE:Samples',
+   '<B><A HREF="__WebPath__/SelfService/Display.html?id=__id__">__Subject__</a></B>/TITLE:Subject',
    '__Status__/TITLE:Request Status',
    '<small>__Requestors__</small>',
    '__OwnerName__',
-   '<b><a href="__WebPath__/Ticket/Display.html?id=__id__">RT#__id__</a></b>/TITLE:Ticket',
+   '<B><A href="__WebPath__/Ticket/Display.html?id=__id__">RT#__id__</A></B>/TITLE:Ticket',
    '__NEWLINE__',
    '',
    '',
    '',
-   '',
-   '__CustomField.{hgi-total-samples}__/TITLE:Total Samples',
    '__CustomField.{hgi-status}__/TITLE:HGI Status',
    '<small>__CreatedRelative__</small>',
    '<small>__LastUpdatedRelative__</small>',

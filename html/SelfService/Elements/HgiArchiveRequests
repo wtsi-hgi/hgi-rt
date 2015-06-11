@@ -63,7 +63,7 @@
 <%INIT>
 my $title = loc("Archival Requests");
 my $id = $session{'CurrentUser'}->id;
-my $Query = "( Queue = 'hgi-archive' ) AND ( Status != 'resolved' )";
+my $Query = "( Queue = 'hgi-archive' ) AND ( Status != 'resolved' ) AND ( Status != 'deleted' ) AND ( Status != 'rejected' )";
 my $Format = qq{
    '__Priority__',
    '__CustomField.{humgen-project-name}__/TITLE:Project',

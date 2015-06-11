@@ -63,7 +63,7 @@
 <%INIT>
 my $title = loc("Development Requests");
 my $id = $session{'CurrentUser'}->id;
-my $Query = "( Queue = 'hgi-dev' ) AND ( Status != 'resolved' )";
+my $Query = "( Queue = 'hgi-dev' ) AND ( Status != 'resolved' ) AND ( Status != 'deleted' ) AND ( Status != 'rejected' )";
 my $Format = qq{
    '__Priority__',
    '<B><A HREF="__WebPath__/SelfService/Display.html?id=__id__">__Subject__</a></B>/TITLE:Subject',

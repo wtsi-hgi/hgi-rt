@@ -56,14 +56,14 @@
 			 BaseURL => $BaseURL,
 			 AllowSorting => 1,
 			 Class   => 'RT::Tickets',
-             Rows    => $Rows,
+                         Rows    => $Rows,
 			 Page    => $Page &>
 </&>
 
 <%INIT>
 my $title = loc("Data Processing Requests");
 my $id = $session{'CurrentUser'}->id;
-my $Query = "( Queue = 'hgi-pipeline' ) AND ( Status != 'resolved' )";
+my $Query = "( Queue = 'hgi-pipeline' ) AND ( Status != 'resolved' ) AND ( Status != 'deleted' ) AND ( Status != 'rejected' )";
 my $Format = qq{
    '__Priority__',
    '__CustomField.{humgen-project-name}__/TITLE:Project',
@@ -76,9 +76,7 @@ my $Format = qq{
    '<b><a href="__WebPath__/Ticket/Display.html?id=__id__">RT#__id__</a></b>/TITLE:Ticket',
    '__NEWLINE__',
    '',
-   '',
-   '',
-   '',
+   '__CustomField.{sequencescape-study-names}__/SPAN:3/TITLE:Sequencescape Studies',
    '__CustomField.{hgi-total-samples}__/TITLE:Total Samples',
    '__CustomField.{hgi-status}__/TITLE:HGI Status',
    '<small>__CreatedRelative__</small>',
@@ -92,5 +90,5 @@ $BaseURL => undef
 $Page => 1
 @Order => ('DESC')
 @OrderBy => ('Priority')
-$Rows => 50
+$Rows => 200
 </%ARGS>
